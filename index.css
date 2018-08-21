@@ -1,0 +1,274 @@
+/**
+ * 52pojie.cn download center stylesheet (https://down.52pojie.cn/)
+ * Designed by Ganlv
+ * Licensed under MIT
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    font-family: "微软雅黑", "Microsoft YaHei", "黑体", SimHei, Arial, sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+/* common */
+
+.container {
+    position: relative;
+    padding: 0 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 980px) {
+    .container {
+        margin: 0 auto;
+        padding: 0;
+        max-width: 960px;
+    }
+}
+
+@media screen and (min-width: 1180px) {
+    .container {
+        max-width: 1130px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.nav, .highlight {
+    user-select: none;
+}
+
+/* bootstrap */
+
+.alert {
+    position: relative;
+    padding: .75rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+.table .thead-light th {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table-sm td, .table-sm th {
+    padding: .3rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, .075);
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* nav */
+
+.nav {
+    padding: 12px 0;
+    color: #4d545d;
+    background-color: #4d545d;
+    border-top: 2px solid #00b1b3;
+}
+
+.nav-brand h1 {
+    height: 40px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5em;
+    line-height: 40px;
+    overflow: hidden;
+}
+
+.nav-block, .nav-block-right {
+    margin-top: 5px;
+}
+
+@media screen and (min-width: 980px) {
+    .nav-brand, .nav-block, .nav-block-right {
+        display: inline-block;
+        margin-top: 0;
+        height: 40px;
+        vertical-align: top;
+    }
+
+    .nav-block {
+        margin-left: 0.5em;
+    }
+
+    .nav-block-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links li a {
+    display: block;
+    padding: 10px 0 5px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.nav-links li a:hover {
+    border-bottom: 1px solid #fff;
+}
+
+.nav-link-newdun-logo {
+    height: 1em;
+    vertical-align: text-bottom;
+    transform: translate(0, -2px);
+}
+
+@media screen and (min-width: 980px) {
+    .nav-links li {
+        display: inline-block;
+    }
+
+    .nav-links li a {
+        padding-left: 5px;
+        padding-right: 5px;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+    }
+
+    .nav-block ul li a:hover {
+        border-bottom: 1px solid #fff;
+    }
+}
+
+/* highlight */
+
+.highlight {
+    padding: 0.5em;
+    border: 1px solid transparent;
+}
+
+.newdun-logo {
+    height: 1em;
+    vertical-align: text-bottom;
+    transform: translate(0, -2px);
+}
+
+/* search from */
+
+.search-form {
+    margin: 1em 0;
+}
+
+.search-input {
+    padding: 0 10px;
+    width: 20em;
+    height: 32px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+
+/* table */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* tips */
+
+.tips {
+    margin-top: 1em;
+}
+
+.tips .alert ul {
+    padding-left: 1.5em;
+}
+
+/* footer */
+
+.footer {
+    margin: 3em 0;
+    color: #999;
+    font-size: .7em;
+    text-align: center;
+}
+
+.copyright span {
+    display: inline-block;
+}
