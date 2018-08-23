@@ -2,6 +2,36 @@
 
 Demo: <https://ganlvtech.github.io/down_52pojie_cn/>
 
+## ngx-fancyindex
+
+Install [ngx-fancyindex](https://github.com/aperezdc/ngx-fancyindex) from distribution or source code.
+
+Download the source of this theme and copy `ngx-fancyindex` to your site's root directory.
+
+Edit the site config like the following example.
+
+```nginx
+location / {
+    fancyindex         on;
+    fancyindex_header  "/ngx-fancyindex/header.html";
+    fancyindex_footer  "/ngx-fancyindex/footer.html";
+    fancyindex_ignore  "ngx-fancyindex";
+}
+```
+
+The `fancyindex_ignore` means `/ngx-fancyindex/` won't be listed on your homepage, but it still can be visited.
+
+You can use the following route to prevent user from visiting the `header.html` and `footer.html` template.
+
+```nginx
+location /ngx-fancyindex/ {
+    deny  all;
+}
+location /ngx-fancyindex/fancyindex.css {
+    allow  all;
+}
+```
+
 ## LICENSE
 
 The MIT License (MIT)
