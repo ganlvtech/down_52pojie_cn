@@ -66,6 +66,7 @@ a:hover {
 
 .alert {
     position: relative;
+    margin-bottom: 1rem;
     padding: .75rem;
     border: 1px solid transparent;
     border-radius: .25rem;
@@ -83,6 +84,76 @@ a:hover {
     border-color: #b8daff;
 }
 
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .75rem 1.25rem;
+    color: inherit;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    border: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.close:focus, .close:hover {
+    color: #000;
+    text-decoration: none;
+    opacity: .75;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+.btn:focus, .btn:hover {
+    text-decoration: none;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    background: transparent none;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
 .text-left {
     text-align: left;
 }
@@ -96,6 +167,7 @@ a:hover {
     max-width: 100%;
     margin-bottom: 1rem;
     background-color: transparent;
+    border-collapse: collapse;
 }
 
 .table .thead-light th {
@@ -132,6 +204,31 @@ a:hover {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.breadcrumb {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: .25rem;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.breadcrumb-item::after {
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: #6c757d;
+    content: "/";
 }
 
 /* nav */
@@ -195,6 +292,7 @@ a:hover {
     height: 1em;
     vertical-align: text-bottom;
     transform: translate(0, -2px);
+    fill: currentColor;
 }
 
 @media screen and (min-width: 980px) {
@@ -223,9 +321,17 @@ a:hover {
 }
 
 .newdun-logo {
+    color: #00b792;
+    fill: currentColor;
     height: 1em;
     vertical-align: text-bottom;
     transform: translate(0, -2px);
+}
+
+/* current path */
+
+.current-path {
+    margin-top: 1em;
 }
 
 /* search from */
@@ -235,19 +341,26 @@ a:hover {
 }
 
 .search-input {
-    padding: 0 10px;
+    display: inline-block;
     width: 20em;
-    height: 32px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
+    vertical-align: middle;
 }
 
 /* table */
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
+.main-table-th-size, .main-table-th-date {
+    width: 5em;
+    min-width: 5em;
+}
+
+#main-tbody .main-table-icon {
+    width: 14px;
+    color: rgba(3, 47, 98, 0.55);
+}
+
+#main-tbody .main-table-icon svg {
+    transform: translate(0, 2px);
+    fill: currentColor;
 }
 
 /* tips */

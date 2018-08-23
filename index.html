@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+
     <div class="highlight alert-warning">
         <div class="container">
             <p>
@@ -40,29 +41,55 @@
             </p>
         </div>
     </div>
+
     <div class="tips">
         <div class="container">
-            <div class="alert alert-primary">
+            <div class="alert alert-primary alert-dismissible">
                 <ul>
                     <li>爱盘限制多线程下载访问，请使用单线程进行下载访问，多并发会被禁止访问。</li>
                     <li>由于附件可能被安全软件误报，部分附件添加了压缩密码，默认解压密码：<strong>www.52pojie.cn</strong></li>
                 </ul>
+                <button type="button" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-success alert-dismissible" id="file-loading">
+                <p id="file-loading-msg">正在加载文件列表...</p>
+                <button type="button" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
     </div>
 
     <div class="main">
         <div class="container">
-            <div class="search-form">
-                文件名筛选：<input type="text" placeholder="文件名筛选" class="search-input" id="main-search-input">
+            <div class="current-path">
+                <ol class="breadcrumb" id="current-path">
+                    <li class="breadcrumb-item"><a href="/">down.52pojie.cn</a></li>
+                    <li class="breadcrumb-item"><a href="/Tools/">Tools</a></li>
+                    <li class="breadcrumb-item active" aria-current="/Tools/Debuggers/">Debuggers</li>
+                </ol>
+            </div>
+            <div class="tool-bar">
+                <div class="search-form">
+                    查找文件：<input type="text" class="form-control search-input" id="main-search-input">
+                    <button type="button" class="btn btn-outline-primary" id="main-search-visit-all">
+                        <span aria-hidden="true">列出全部文件</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="main-search-visit-root">
+                        <span aria-hidden="true">返回根目录</span>
+                    </button>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-sm table-hover sortable table-bordered" id="main-table">
                     <thead class="thead-light">
                         <tr>
+                            <th class="text-left"></th>
                             <th class="text-left">文件名</th>
-                            <th class="text-right">文件大小</th>
-                            <th class="text-left" data-sort-default>上传日期</th>
+                            <th class="text-right main-table-th-size">文件大小</th>
+                            <th class="text-left main-table-th-date" data-sort-default>上传日期</th>
                         </tr>
                     </thead>
                     <tbody id="main-tbody">
@@ -81,10 +108,27 @@
     <div style="display: none;">
         <!-- 站长统计脚本位置 -->
     </div>
+    <script type="text/template" id="current-path-template">
+        <% _.forEach(data, function (item) { %>
+        <li class="breadcrumb-item<% if (item.active) { %> active<% } %>"><a href="<%= _.escape(item.fullUrl) %>" data-path="<%= _.escape(item.path) %>"><%= _.escape(item.name) %></a></li>
+        <% }); %>
+    </script>
     <script type="text/template" id="main-tbody-template">
         <% _.forEach(data, function (item) { %>
         <tr>
-            <td><a href="<%= item.fullUrl %>" title="<%= _.escape(item.fullUrl) %>"><%= _.escape(item.name) %></a></td>
+            <td class="main-table-icon">
+                <% if (item.name === '..') { %>
+                <% } else if (item.isDir) { %>
+                <svg class="octicon octicon-file-directory" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path>
+                </svg>
+                <% } else { %>
+                <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path>
+                </svg>
+                <% } %>
+            </td>
+            <td><a href="<%= item.fullUrl %>" title="<%= _.escape(item.fullUrl) %>" data-path="<%= _.escape(item.path) %>"><%= _.escape(item.name) %></a></td>
             <td title="<%= _.escape(item.size) %>" data-sort="<%= item.size %>" class="text-right"><%= _.escape(item.sizeReadable) %></td>
             <td title="<%= _.escape(item.timeFormatted) %>" data-sort="<%= item.time %>"><%= _.escape(item.timeFromNow) %></td>
         </tr>
