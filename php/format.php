@@ -5,7 +5,7 @@ $json = file_get_contents(__DIR__ . '/origin.json');
 $origin = json_decode($json, true);
 
 $list = format($origin);
-file_put_contents(dirname(__DIR__) . '/list.json', json_encode($list));
+file_put_contents(dirname(__DIR__) . '/list.json', json_encode($list, JSON_UNESCAPED_UNICODE));
 
 function format($origin) {
     $result = [
@@ -71,6 +71,7 @@ function sizeToNumber($size)
     }
 }
 
+/** @link https://stackoverflow.com/questions/834303/startswith-and-endswith-functions-in-php/834355#834355 */
 function endsWith($haystack, $needle)
 {
     $length = strlen($needle);
