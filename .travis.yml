@@ -1,0 +1,45 @@
+matrix:
+  include:
+    - language: node_js
+      node_js:
+        - "node"
+      branches:
+        only:
+        - master
+      script:
+        - ./build_release.sh
+      deploy:
+        provider: releases
+        api-key: $GITHUB_TOKEN
+        file: ./dist.zip
+        skip-cleanup: true
+        on:
+          tags: true
+
+    # - language: php
+    #   php:
+    #     - '7.2'
+    #   branches:
+    #     only:
+    #     - master
+    #   script:
+    #     - php php/crawl.php
+    #     - php php/format.php
+    #   deploy:
+    #     skip-cleanup: true
+
+    # - language: node_js
+    #   node_js:
+    #     - "node"
+    #   branches:
+    #     only:
+    #     - master
+    #   script:
+    #     - npm run build
+    #   deploy:
+    #     provider: pages
+    #     skip-cleanup: true
+    #     github-token: $GITHUB_TOKEN
+    #     keep-history: true
+    #     on:
+    #       branch: gh-pages
