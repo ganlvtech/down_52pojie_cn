@@ -1,0 +1,145 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import "~toastr/build/toastr.css";
+
+html {
+  font-family: "微软雅黑", "Microsoft YaHei", "黑体", SimHei, Arial, sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+.no-select {
+  user-select: none;
+}
+
+$navbar-dark-background-color: #4d545d;
+$navbar-dark-color: #fff;
+
+.navbar.navbar-dark {
+  background-color: $navbar-dark-background-color;
+
+  .navbar-brand {
+    font-weight: bold;
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $navbar-dark-color;
+
+      .github-logo {
+        color: #fff;
+        fill: currentColor;
+        width: 1.4rem;
+        height: 1.4rem;
+        vertical-align: middle;
+        margin-top: -3px;
+      }
+
+      .newdun-logo {
+        height: 1rem;
+        vertical-align: middle;
+        margin-top: -3px;
+      }
+
+      &:hover {
+        box-shadow: 0 1px $navbar-dark-color;
+      }
+    }
+
+    .dropdown-menu {
+      background-color: rgba($navbar-dark-background-color, 0.5);
+      border: 1px solid rgba($navbar-dark-color, 0.15);
+
+      .dropdown-item {
+        color: $navbar-dark-color;
+
+        &:hover {
+          color: #16181b;
+        }
+      }
+    }
+  }
+}
+
+.highlight {
+  padding: 0.25rem 1rem;
+  border-radius: 0;
+
+  p {
+    margin-bottom: 0;
+
+    .newdun-logo {
+      height: 1em;
+      vertical-align: middle;
+      margin-top: -4px;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .container {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+.alert ul {
+  margin-bottom: 0;
+  padding-left: 1em;
+}
+
+.current-path {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#main {
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+  }
+
+  table th {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+  }
+
+  table td, table th {
+    padding: .3rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    border-bottom-width: 2px;
+  }
+
+  table tbody tr:hover {
+    background-color: rgba(0, 0, 0, .075);
+  }
+
+  table thead th:nth-child(2) {
+    width: 7em;
+    min-width: 7em;
+  }
+
+  table thead th:nth-child(3) {
+    width: 10em;
+    min-width: 10em;
+  }
+
+}
+
+.footer {
+  margin: 3em 0;
+  color: #999;
+  font-size: .7em;
+  text-align: center;
+}
+
+.copyright span {
+  display: inline-block;
+}

@@ -1,10 +1,27 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import './styles/index.scss';
 
-Vue.config.productionTip = false
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home.vue';
+import App from './App.vue';
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+window.$ = window.jQuery = require('jquery');
+window.Popper = require('popper.js');
+require('bootstrap');
+
+Vue.config.productionTip = false;
+Vue.use(Router);
+
+const router = new Router({
+    mode: 'history',
+    base: '/',
+    routes: [
+        {path: '(.*)', name:'home', component: Home}
+    ]
+});
+
+window.vm = new Vue({
+    el: '#app',
+    router,
+    render: h => h(App)
+});
