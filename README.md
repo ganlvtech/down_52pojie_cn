@@ -1,8 +1,20 @@
-# down_52pojie_cn
+# 爱盘 down.52pojie.cn
+
+<https://down.52pojie.cn/>
+
+[![Build Status](https://travis-ci.org/ganlvtech/down_52pojie_cn.svg?branch=master)](https://travis-ci.org/ganlvtech/down_52pojie_cn)
+
+本仓库为 [吾爱破解论坛](https://www.52pojie.cn/) [爱盘](https://down.52pojie.cn/) 页面的源代码，目前为第 2 版，使用 Vue 重构，新增加搜索功能。
+
+相关链接
+
+* [在线演示](https://ganlvtech.github.io/down_52pojie_cn/)
+* [1.0 版本](https://github.com/ganlvtech/down_52pojie_cn/tree/1.0)
+* [下载 Release 版本](https://github.com/ganlvtech/down_52pojie_cn/releases)
 
 ## 部署
 
-在 GitHub Release 页面，下载 dist 的压缩包，解压到服务器根目录。
+在 [Release 页面](https://github.com/ganlvtech/down_52pojie_cn/releases) 下载 `dist.zip` 的压缩包，解压到服务器根目录。
 
 在服务器安装 [ngx-fancyindex](https://github.com/aperezdc/ngx-fancyindex)，然后 ngx-fancyindex 配置方法如下。
 
