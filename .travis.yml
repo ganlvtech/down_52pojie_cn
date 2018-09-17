@@ -29,6 +29,7 @@ matrix:
         - php php/crawl.php
         - php php/format.php
         - npm install
+        - export BUILD_GITHUB_PAGES=true
         - npm run build
       deploy:
         provider: pages

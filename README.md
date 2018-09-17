@@ -69,6 +69,7 @@ npm run serve
 php php/crawl.php
 php php/format.php
 npm install
+echo "BUILD_GITHUB_PAGES=true" > .env.local
 npm run build
 ```
 

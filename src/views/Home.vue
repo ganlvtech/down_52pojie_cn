@@ -29,7 +29,7 @@
         },
         mounted() {
             toastr.info('爱盘搜索扩展插件加载完成，正在加载文件列表');
-            axios.get(`/list.json?t=${this.todayTimestamp}`)
+            axios.get(`${process.env.BASE_URL}list.json?t=${this.todayTimestamp}`)
                 .then(response => {
                     this.data = prepareFiles(response.data);
                     this.path = this.data;

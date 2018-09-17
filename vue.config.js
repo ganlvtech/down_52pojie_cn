@@ -41,6 +41,7 @@ module.exports = {
     css: {
         extract: true
     },
+    baseUrl: process.env.BUILD_GITHUB_PAGES ? '/down_52pojie_cn/' : undefined,
     assetsDir: process.env.USE_FANCY_INDEX ? process.env.FANCY_INDEX_DIR : undefined,
     chainWebpack: config => {
         if (process.env.USE_FANCY_INDEX) {
