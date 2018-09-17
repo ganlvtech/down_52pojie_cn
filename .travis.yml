@@ -17,30 +17,22 @@ matrix:
         on:
           tags: true
 
-    # - language: php
-    #   php:
-    #     - '7.2'
-    #   branches:
-    #     only:
-    #     - master
-    #   script:
-    #     - php php/crawl.php
-    #     - php php/format.php
-    #   deploy:
-    #     skip-cleanup: true
-
-    # - language: node_js
-    #   node_js:
-    #     - "node"
-    #   branches:
-    #     only:
-    #     - master
-    #   script:
-    #     - npm run build
-    #   deploy:
-    #     provider: pages
-    #     skip-cleanup: true
-    #     github-token: $GITHUB_TOKEN
-    #     keep-history: true
-    #     on:
-    #       branch: gh-pages
+    - language: php
+      php:
+        - '7.2'
+      branches:
+        only:
+        - master
+      before_install:
+        - nvm install node
+      script:
+        - php php/crawl.php
+        - php php/format.php
+        - npm run build
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        keep-history: true
+        on:
+          branch: gh-pages
