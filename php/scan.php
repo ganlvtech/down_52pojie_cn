@@ -1,26 +1,47 @@
 <?php
 
-// define('BASE_DIR', '/home/ganlv/Downloads');
-define('BASE_DIR', "C:\Users\Ganlv\Downloads");
-$list = scan(BASE_DIR);
-file_put_contents(dirname(__DIR__) . '/public/list.json', json_encode($list, JSON_UNESCAPED_UNICODE));
+// ==================== config ====================
 
-function scan($dir)
+define('BASE_DIR', dirname(__DIR__) . '\dist');
+define('OUTPUT_FILE', dirname(__DIR__) . '\public\list.json');
+// define('BASE_DIR', '/home/ganlv/Downloads');
+// define('OUTPUT_FILE', BASE_DIR . '/list.json');
+$exclude_files = [
+    '/.fancyindex',
+    '/list.json',
+];
+
+
+
+// ==================================================
+
+date_default_timezone_set('Asia/Shanghai');
+
+foreach ($exclude_files as &$file) {
+    $file = BASE_DIR . $file;
+}
+$list = scan(BASE_DIR, $exclude_files);
+file_put_contents(OUTPUT_DIR, json_encode($list, JSON_UNESCAPED_UNICODE));
+
+function scan($dir, $exclude_files = [])
 {
     return [
         'name' => '/',
-        'children' => scanRecursive($dir),
+        'children' => scanRecursive($dir, $exclude_files),
     ];
 }
 
-function scanRecursive($dir)
+function scanRecursive($dir, $exclude_files = [])
 {
     $result = [];
     foreach (scandir($dir) as $name) {
         if ($name[0] === '.') {
             continue;
         }
-        $path = $dir . DIRECTORY_SEPARATOR . $name;
+        $path = $dir . '/' . $name;
+        if (in_array($path, $exclude_files)) {
+            continue;
+        }
         if (is_dir($path)) {
             $result[] = [
                 'name' => $name,

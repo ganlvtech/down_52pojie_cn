@@ -2,7 +2,7 @@
     <div>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <router-link to="/">{{ process.env.VUE_APP_DOWNLOAD_BASE_URL }}</router-link>
+                <router-link to="/">{{ baseUrl }}</router-link>
             </li>
             <li v-for="part in parts" :key="part.i" :class="{active: part.active}" class="breadcrumb-item">
                 <router-link :to="part.file.path">{{ part.file.name }}</router-link>
@@ -59,6 +59,9 @@
                     }
                 }
                 return _.reverse(parts);
+            },
+            baseUrl() {
+                return process.env.VUE_APP_DOWNLOAD_BASE_URL;
             }
         }
     };
