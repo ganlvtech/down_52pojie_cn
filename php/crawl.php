@@ -6,9 +6,36 @@ define('BASE_URL', 'https://down.52pojie.cn');
 $origin = crawlOriginalList('/');
 file_put_contents(__DIR__ . '/origin.json', json_encode($origin));
 
+function curl($url)
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $content = curl_exec($ch);
+    $errno = curl_errno($ch);
+    if ($errno > 0) {
+        $error = curl_error($ch);
+        curl_close($ch);
+        throw new Exception("cURL error ($errno): $error.");
+    }
+    curl_close($ch);
+    return $content;
+}
+
 function crawlOriginalList($url)
 {
-    $html = file_get_contents(BASE_URL . $url . '?t=' . time());
+    $retry = 0;
+    $html = '';
+    while (!$html && $retry++ < 3) {
+        try {
+            $html = curl(BASE_URL . $url . '?t=' . time());
+        } catch (Exception $e) {
+            echo $e->getMessage(), PHP_EOL;
+        }
+        sleep(1);
+    }
     $list = [];
     if (1 === preg_match('#<tbody>(.*?)</tbody>#su', $html, $matches)) {
         $tbody = $matches[1];
@@ -27,8 +54,8 @@ function crawlOriginalList($url)
                         'size' => $size,
                         'time' => $time,
                     ];
-                    echo $name, "\t", $url1, PHP_EOL;
                     if ($size === '-') {
+                        echo urldecode($url1), PHP_EOL;
                         $item['children'] = crawlOriginalList($url1);
                     }
                     $list[] = $item;

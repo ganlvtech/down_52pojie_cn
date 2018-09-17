@@ -28,6 +28,7 @@ matrix:
       script:
         - php php/crawl.php
         - php php/format.php
+        - npm install
         - npm run build
       deploy:
         provider: pages
