@@ -21,7 +21,7 @@ foreach ($exclude_files as &$file) {
     $file = BASE_DIR . $file;
 }
 $list = scan(BASE_DIR, $exclude_files);
-file_put_contents(OUTPUT_DIR, json_encode($list, JSON_UNESCAPED_UNICODE));
+file_put_contents(OUTPUT_FILE, json_encode($list, JSON_UNESCAPED_UNICODE));
 
 function scan($dir, $exclude_files = [])
 {
