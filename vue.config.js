@@ -10,7 +10,6 @@ FancyIndexPlugin.prototype.apply = function (compiler) {
             if (filename === 'index.html') {
                 const file = compilation.assets[filename];
                 const html = file.source();
-                console.debug(html);
                 const splitted = html.split('</h1>');
                 const header = splitted[0];
                 const footer = splitted[1];
