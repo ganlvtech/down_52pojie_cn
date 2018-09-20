@@ -10,7 +10,7 @@ FancyIndexPlugin.prototype.apply = function (compiler) {
             if (filename === 'index.html') {
                 const file = compilation.assets[filename];
                 const html = file.source();
-                const splitted = html.split('</h1>');
+                const splitted = html.split('/</h1>');
                 const header = splitted[0];
                 const footer = splitted[1];
                 compilation.assets[`${process.env.FANCY_INDEX_DIR}/header.html`] = {

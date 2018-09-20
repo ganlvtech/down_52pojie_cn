@@ -2,7 +2,7 @@
 
 // ==================== config ====================
 
-define('BASE_DIR', dirname(__DIR__) . '\dist');
+define('BASE_DIR', 'C:\Users\Ganlv\Downloads');
 define('OUTPUT_FILE', dirname(__DIR__) . '\public\list.json');
 // define('BASE_DIR', '/home/ganlv/Downloads');
 // define('OUTPUT_FILE', BASE_DIR . '/list.json');
@@ -51,7 +51,7 @@ function scanRecursive($dir, $exclude_files = [])
             $result[] = [
                 'name' => $name,
                 'size' => filesize($path),
-                'time' => filectime($path),
+                'time' => filemtime($path),
             ];
         }
     }
