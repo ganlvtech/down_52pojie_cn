@@ -1,6 +1,6 @@
 # 爱盘 down.52pojie.cn
 
-<!--[![Build Status](https://travis-ci.org/ganlvtech/down_52pojie_cn.svg?branch=master)](https://travis-ci.org/ganlvtech/down_52pojie_cn)-->
+[![Build Status](https://travis-ci.org/ganlvtech/down_52pojie_cn.svg?branch=master)](https://travis-ci.org/ganlvtech/down_52pojie_cn)
 
 本仓库为 [吾爱破解论坛](https://www.52pojie.cn/) [爱盘](https://down.52pojie.cn/) 页面的源代码，目前为第 2 版，使用 Vue 重构，新增加搜索功能。
 
