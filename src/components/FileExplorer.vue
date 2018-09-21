@@ -1,21 +1,14 @@
 <template>
     <div>
-        <FilePath :file="currentFile" :is-search="isSearch" :query="searchQuery"/>
-        <form class="form-inline" action="/" method="post" @submit.prevent="submitForm">
-            <div class="form-group mb-2">
-                <label for="search-input">查找文件：</label>
-            </div>
-            <div class="form-group mr-2 mb-2">
-                <input id="search-input" ref="searchInput" :value="searchQuery" type="search" name="query" class="form-control" @input="submitDebounce">
-            </div>
-            <button type="submit" class="btn btn-primary mr-2 mb-2">搜索</button>
-            <a class="btn btn-outline-primary mb-2" @click="submitAll">全部文件</a></form>
+        <FilePath :base-url="baseUrl" :file="currentFile" :is-search="isSearch" :query="searchQuery"/>
+        <SearchBox :query="searchQuery" @submit="submit"/>
         <FileTable :files="files" :desc="false" order-by="name"/>
     </div>
 </template>
 
 <script>
     import FilePath from '../components/FilePath.vue';
+    import SearchBox from '../components/SearchBox.vue';
     import FileTable from '../components/FileTable.vue';
     import {flattenFiles} from '../helpers';
     import toastr from 'toastr';
@@ -23,9 +16,14 @@
     export default {
         components: {
             FilePath,
+            SearchBox,
             FileTable
         },
         props: {
+            baseUrl: {
+                type: String,
+                default: ''
+            },
             root: {
                 type: Object,
                 default() {
@@ -47,7 +45,7 @@
         },
         computed: {
             path() {
-                return decodeURI(this.$route.path);
+                return this.$route.params[0];
             },
             stats() {
                 let lastUpdate = this.root.timeFromNowForHuman;
@@ -106,21 +104,12 @@
             }
         },
         mounted() {
-            toastr.success(`文件列表加载完成。最后更新于 ${this.stats.lastUpdate}，爱盘包含 ${this.stats.fileCount} 个文件、${this.stats.dirCount} 个文件夹，共计 ${this.stats.size}。`);
+            toastr.success(`文件列表加载完成。最后更新于 ${this.stats.lastUpdate}，包含 ${this.stats.fileCount} 个文件、${this.stats.dirCount} 个文件夹，共计 ${this.stats.size}。`);
         },
         methods: {
             submit(query) {
-                this.$router.push({name: 'home', query: {query: query}});
+                this.$router.push({name: 'home', query: {query: query}, params: {0: ''}});
             },
-            submitDebounce: _.debounce(function () {
-                this.submit(this.$refs.searchInput.value);
-            }, 500),
-            submitForm() {
-                this.submit(this.$refs.searchInput.value);
-            },
-            submitAll() {
-                this.submit('');
-            }
         }
     };
 </script>

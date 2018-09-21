@@ -79,6 +79,13 @@
             </div>
         </div>
     </noscript>
+    <!--[if lt IE 9]>
+    <div class="container">
+        <div class="alert alert-danger">
+            <strong>非常抱歉：使用 IE 8 或者更早版本的浏览器访问本网站可能给您带来较差的交互体验，请您将浏览器升级至最新版本。推荐使用 <a href="https://www.google.cn/chrome/">Chrome 浏览器</a> 访问本页面。</strong>
+        </div>
+    </div>
+    <![endif]-->
     <div class="container">
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <ul>
@@ -104,11 +111,16 @@
         </p>
     </div>
     <script>
-        (function f() {
+        (function () {
             var ths = document.querySelectorAll('th');
             for (var i = 0; i < ths.length; ++i) {
                 ths[i].style.width = '';
             }
+            window.addEventListener('DOMContentLoaded', function () {
+                window.down52PojieCn = new Down52PojieCn({
+                    requestType: 'jsonp'
+                });
+            });
         })();
     </script>
 </body>

@@ -60,3 +60,6 @@ export function flattenFiles(file, all = []) {
     return all;
 }
 
+export function cacheTimestamp(cacheTime = 86400) {
+    return Math.floor(Date.now() / 1000 / cacheTime) * cacheTime;
+}
