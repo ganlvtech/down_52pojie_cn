@@ -2,26 +2,39 @@
 
 // ==================== config ====================
 
+// Windows
 define('BASE_DIR', 'C:\Users\Ganlv\Downloads');
-define('OUTPUT_FILE', dirname(__DIR__) . '\public\list.json');
+// define('OUTPUT_FILE', dirname(__DIR__) . '\public\list.json');
+
+// Use jsonp
+define('OUTPUT_FILE', dirname(__DIR__) . '\public\list.js');
+
+// Linux
 // define('BASE_DIR', '/home/ganlv/Downloads');
 // define('OUTPUT_FILE', BASE_DIR . '/list.json');
-$exclude_files = [
-    '/.fancyindex',
-    '/list.json',
-];
+// define('OUTPUT_FILE', BASE_DIR . '/list.js');
 
+$exclude_files = [
+    '/list.json',
+    '/list.js',
+];
 
 
 // ==================================================
 
+define('JSONP_CALLBACK', '__jsonpCallbackDown52PojieCn');
 date_default_timezone_set('Asia/Shanghai');
 
 foreach ($exclude_files as &$file) {
     $file = BASE_DIR . $file;
 }
 $list = scan(BASE_DIR, $exclude_files);
-file_put_contents(OUTPUT_FILE, json_encode($list, JSON_UNESCAPED_UNICODE));
+
+$output = json_encode($list, JSON_UNESCAPED_UNICODE);
+if (substr(OUTPUT_FILE, -2) === '.js') {
+    $output = JSONP_CALLBACK . '(' . $output . ');';
+}
+file_put_contents(OUTPUT_FILE, $output);
 
 function scan($dir, $exclude_files = [])
 {
