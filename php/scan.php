@@ -31,7 +31,7 @@ foreach ($exclude_files as &$file) {
 $list = scan(BASE_DIR, $exclude_files);
 
 $output = json_encode($list, JSON_UNESCAPED_UNICODE);
-if (substr(OUTPUT_FILE, -2) === '.js') {
+if (substr(OUTPUT_FILE, -3) === '.js') {
     $output = JSONP_CALLBACK . '(' . $output . ');';
 }
 file_put_contents(OUTPUT_FILE, $output);

@@ -1,6 +1,3 @@
-const path = require('path');
-const fs = require('fs');
-
 function FancyIndexPlugin(options) {
 }
 
@@ -45,7 +42,7 @@ module.exports = {
     assetsDir: process.env.USE_FANCY_INDEX ? process.env.FANCY_INDEX_DIR : undefined,
     chainWebpack: config => {
         if (process.env.USE_FANCY_INDEX) {
-            config.plugin('fancy-index-plugin').use(FancyIndexPlugin)
+            config.plugin('fancy-index-plugin').use(FancyIndexPlugin);
         }
         config.optimization.splitChunks({});
     }

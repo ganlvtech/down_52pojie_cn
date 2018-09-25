@@ -200,13 +200,12 @@ npm run build
 ```bash
 npm install
 echo "USE_FANCY_INDEX=true" >> .env.local
-echo "FANCY_INDEX_DIR=.fancyindex" >> .env.local
 npm run build
 ```
 
 说明：
 
-1. 打开 `USE_FANCY_INDEX` 并且设置输出文件夹为 `FANCY_INDEX_DIR` 变量
+1. 打开 `USE_FANCY_INDEX` 并且设置输出文件夹为 `FANCY_INDEX_DIR` 变量（`FANCY_INDEX_DIR` 在 `.env` 中设置）
 2. 通过 `npm run build` 构建页面
 3. 此时 `dist` 文件夹的内容直接放到网站根目录即可
 4. 此版本会在 `index.html` 中插入 Vue Router 使用 history 模式的配置。
