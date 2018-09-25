@@ -2,7 +2,7 @@
 export USE_FANCY_INDEX=true
 mkdir backup
 cp public/index.html backup/index.html
-sed -i "s/new Down52PojieCn({/& routerMode: 'history', requestType: 'jsonp' /g" ./public/index.html
+sed -i "s/new Down52PojieCn({/& routerMode: 'history', requestType: 'jsonp' /g" public/index.html
 
 npm install
 npm run build
