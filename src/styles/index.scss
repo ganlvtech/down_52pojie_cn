@@ -27,6 +27,12 @@ $navbar-dark-color: #fff;
     .nav-link {
       color: $navbar-dark-color;
 
+      ._52pojie-logo {
+        height: 1.4rem;
+        vertical-align: middle;
+        margin-top: -3px;
+      }
+
       .github-logo {
         color: #fff;
         fill: currentColor;
