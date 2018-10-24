@@ -10,7 +10,7 @@
     import FilePath from '../components/FilePath.vue';
     import SearchBox from '../components/SearchBox.vue';
     import FileTable from '../components/FileTable.vue';
-    import {flattenFiles} from '../helpers';
+    import {flattenFiles, fuzzySearchQuery} from '../helpers';
     import toastr from 'toastr';
 
     export default {
@@ -92,8 +92,16 @@
             files() {
                 let result = [];
                 if (this.isSearch) {
-                    const regex = new RegExp(this.searchQuery, 'i');
-                    result = _.filter(this.all, o => regex.test(o.name));
+                    let query = this.searchQuery;
+                    let regex = new RegExp(query, 'i');
+                    result = _.filter(this.all, o => (regex.test(o.name) || regex.test(o.description)));
+                    if (result.length <= 0) {
+                        let fuzzyQuery = fuzzySearchQuery(query);
+                        if (fuzzyQuery !== query) {
+                            regex = new RegExp(fuzzyQuery, 'i');
+                            result = _.filter(this.all, o => (regex.test(o.name) || regex.test(o.description)));
+                        }
+                    }
                 } else {
                     const currentFile = this.currentFile;
                     if (currentFile) {

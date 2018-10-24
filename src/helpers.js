@@ -66,3 +66,17 @@ export function flattenFiles(file, all = []) {
 export function cacheTimestamp(cacheTime = 86400) {
     return Math.floor(Date.now() / 1000 / cacheTime) * cacheTime;
 }
+
+/**
+ * 如果搜索内容中，仅包含字母、数字、文字，那么在两个字符之间插入 .* ，用于正则匹配的模糊搜索
+ *
+ * @param {string} query
+ * 
+ * @returns {string}
+ */
+export function fuzzySearchQuery(query) {
+    if (/^[0-9A-Za-z\u4e00-\u9fa5]+$/.test(query)) {
+        query = query.split("").join(".*");
+    }
+    return query;
+}
