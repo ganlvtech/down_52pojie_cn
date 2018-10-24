@@ -19,10 +19,10 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.3",
-    "@vue/cli-plugin-eslint": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
-    "node-sass": "^4.9.0",
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "node-sass": "^4.9.4",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
   }
