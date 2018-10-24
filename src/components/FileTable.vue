@@ -26,10 +26,10 @@
                     <td :title="file.timeForHuman">{{ file.timeFromNowForHuman }}</td>
                 </tr>
                 <tr v-if="empty">
-                    <th/>
+                    <td class="icon"></td>
                     <td>没有文件</td>
-                    <th>-</th>
-                    <th>-</th>
+                    <td>-</td>
+                    <td>-</td>
                 </tr>
             </tbody>
         </table>
@@ -88,14 +88,20 @@
     .icon {
         width: 14px;
         color: rgba(3, 47, 98, 0.55);
+        box-sizing: content-box;
 
         svg {
             fill: currentColor;
         }
     }
 
-    .size, .date {
+    .size {
         width: 5em;
         min-width: 5em;
+    }
+
+    .date {
+        width: 6em;
+        min-width: 6em;
     }
 </style>
