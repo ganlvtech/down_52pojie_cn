@@ -8,7 +8,7 @@
                 <input id="search-input" ref="searchInput" :value="query" type="search" name="query" class="form-control" @input="submitDebounce">
             </div>
             <button type="submit" class="btn btn-primary mr-2 mb-2">搜索</button>
-            <a class="btn btn-outline-primary mb-2" @click="submitAll">全部文件</a>
+            <button type="button" class="btn btn-outline-primary mb-2" @click="submitAll">全部文件</button>
         </form>
     </div>
 </template>
