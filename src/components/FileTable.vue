@@ -20,8 +20,9 @@
                         </svg>
                     </td>
                     <td>
-                        <router-link v-if="file.isDir" :to="file.path" :title="file.name">{{ file.name }}</router-link>
-                        <a v-else :href="file.fullUrl" :title="file.name" target="_blank">{{ file.name }}</a></td>
+                        <router-link v-if="file.isDir" :to="file.path" :title="file.description" data-tooltip="toggle">{{ file.name }}</router-link>
+                        <a v-else :href="file.fullUrl" :title="file.description" target="_blank" data-tooltip="toggle">{{ file.name }}</a>
+                    </td>
                     <td :title="file.size" class="text-right">{{ file.sizeReadable }}</td>
                     <td :title="file.timeForHuman">{{ file.timeFromNowForHuman }}</td>
                 </tr>
@@ -37,6 +38,10 @@
 </template>
 
 <script>
+    import jQuery from 'jquery';
+
+    const $ = jQuery;
+
     export default {
         props: {
             files: {
@@ -71,6 +76,12 @@
                 return this.files.length <= 0;
             }
         },
+        mounted() {
+            this.addTooltipEventListener();
+        },
+        updated() {
+            this.addTooltipEventListener();
+        },
         methods: {
             sort(field) {
                 if (field === this.orderBy) {
@@ -79,6 +90,14 @@
                     this.orderBy = field;
                     this.desc = this.defaultIsDesc[field];
                 }
+            },
+            addTooltipEventListener() {
+                this.$nextTick(() => {
+                    $('.tooltip').remove();
+                    $(this.$el).find('[data-tooltip="toggle"]').tooltip({
+                        placement: 'bottom'
+                    });
+                });
             }
         }
     };

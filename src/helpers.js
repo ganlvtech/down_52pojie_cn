@@ -44,6 +44,9 @@ export function prepareFiles(file, parent = null) {
         });
     }
     file.fullUrl = process.env.VUE_APP_DOWNLOAD_BASE_URL + file.path;
+    if (!file.hasOwnProperty('description')) {
+        file.description = '';
+    }
     file.sizeReadable = readableSize(file.size);
     file.timeForHuman = moment.unix(file.time).format('lll');
     file.timeFromNowForHuman = moment.unix(file.time).fromNow();

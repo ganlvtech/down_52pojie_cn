@@ -1,12 +1,12 @@
 <template>
     <div>
-        <ol class="breadcrumb">
+        <ol class="breadcrumb" ref="ol">
             <li class="breadcrumb-item">
                 <router-link to="/">{{ baseUrl }}</router-link>
             </li>
             <li v-for="part in parts" :key="part.i" :class="{active: part.active}" class="breadcrumb-item">
-                <span v-if="part.active">{{ part.file.name }}</span>
-                <router-link v-else :to="part.file.path">{{ part.file.name }}</router-link>
+                <span v-if="part.active" :title="part.file.description" data-tooltip="toggle">{{ part.file.name }}</span>
+                <router-link v-else :to="part.file.path" :title="part.file.description" data-tooltip="toggle">{{ part.file.name }}</router-link>
             </li>
             <li v-if="isSearch" class="breadcrumb-item">
                 <span>搜索文件：{{ query }}</span>
@@ -16,6 +16,9 @@
 </template>
 
 <script>
+    import jQuery from 'jquery';
+
+    const $ = jQuery;
     const _ = require('lodash');
 
     export default {
@@ -70,6 +73,22 @@
                     }
                 }
                 return _.reverse(parts);
+            }
+        },
+        mounted() {
+            this.addTooltipEventListener();
+        },
+        updated() {
+            this.addTooltipEventListener();
+        },
+        methods: {
+            addTooltipEventListener() {
+                this.$nextTick(() => {
+                    $('.tooltip').remove();
+                    $(this.$el).find('[data-tooltip="toggle"]').tooltip({
+                        placement: 'bottom'
+                    });
+                });
             }
         }
     };
