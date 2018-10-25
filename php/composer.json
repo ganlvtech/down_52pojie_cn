@@ -1,0 +1,23 @@
+{
+    "name": "ganlv/down_52pojie_cn",
+    "description": "down.52pojie.cn file scan script",
+    "type": "project",
+    "require": {
+        "php": ">=7.0",
+        "ext-json": "*",
+        "ext-curl": "*",
+        "symfony/yaml": "^4.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ganlv\\Down52PojieCn\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ganlv",
+            "email": "ganlvtech@qq.com"
+        }
+    ]
+}

@@ -1,108 +1,60 @@
 <?php
 
-// Load cache
+use Ganlv\Down52PojieCn\FileDescription;
+use Ganlv\Down52PojieCn\FileSystem\DownloadFileSystem;
+use Ganlv\Down52PojieCn\FileSystem\GitHubCommitFileSystem;
+use Ganlv\Down52PojieCn\FileSystem\NginxFancyIndexSpiderFileSystem;
+use Ganlv\Down52PojieCn\Helpers;
+use Ganlv\Down52PojieCn\Serializer\JsonSerializer;
+use Ganlv\Down52PojieCn\Serializer\YamlSerializer;
 
-// https://raw.githubusercontent.com/ganlvtech/down_52pojie_cn/gh-pages/list.json
+require __DIR__ . '/vendor/autoload.php';
 
-echo 'Get history for down_52pojie_cn/list.json on branch gh-pages.', PHP_EOL;
-$html = curl('https://github.com/ganlvtech/down_52pojie_cn/commits/gh-pages/list.json');
+date_default_timezone_set('Asia/Shanghai');
 
-if (preg_match_all('/Commits on (\w+? \d+?, \d{4})/', $html, $matches)) {
-    $date = $matches[1][0];
-    echo 'Most recently committed on: ', $date, PHP_EOL;
+$fileSystem = new GitHubCommitFileSystem([
+    'COMMITS_URL' => 'https://github.com/ganlvtech/down_52pojie_cn/commits/gh-pages/list.json',
+    'RAW_FILE_URL' => 'https://raw.githubusercontent.com/ganlvtech/down_52pojie_cn/gh-pages/list.json',
+    'CACHE_MAX_AGE' => 7 * 24 * 60 * 60,
+]);
+$data = $fileSystem->tree();
 
-    $timestamp = strtotime($date);
-    $time_diff = time() - $timestamp;
-    $days = $time_diff / (24 * 60 * 60);
-    if ($days <= 0) {
-        $daysForHumans = 'recently';
-    } elseif ($days > 1) {
-        $daysForHumans = (int)$days . ' days ago';
-    } else {
-        $daysForHumans = 'today';
-    }
-    echo 'Committed ', $daysForHumans, PHP_EOL;
+if (!$data) {
+    $fileSystem = new DownloadFileSystem([
+        'FILE_URL' => 'https://down.52pojie.cn/list.json',
+    ]);
+    $data = $fileSystem->tree();
+}
 
-    if ($days < 7) {
-        echo 'Less than 7 days. Not expired. Start downloading.', PHP_EOL;
-        $json = curl('https://raw.githubusercontent.com/ganlvtech/down_52pojie_cn/gh-pages/list.json');
-        file_put_contents(dirname(__DIR__) . '/public/list.json', $json);
-        echo 'Download list.json finished.', PHP_EOL;
-        return;
-    } else {
-        echo 'File expired.', PHP_EOL;
-    }
+if (!$data) {
+    $fileSystem = new DownloadFileSystem([
+        'FILE_URL' => 'https://down.52pojie.cn/list.js',
+    ]);
+    $data = $fileSystem->tree();
+}
+
+if (!$data) {
+    $fileSystem = new NginxFancyIndexSpiderFileSystem([
+        'BASE_PATH' => 'https://down.52pojie.cn',
+    ]);
+    $data = $fileSystem->tree();
+}
+
+$descriptionFile = __DIR__ . '/data/description.yml';
+if (file_exists($descriptionFile)) {
+    $yml = file_get_contents($descriptionFile);
+    $serializer = new YamlSerializer();
+    $descriptionData = $serializer->unserialize($yml);
+    $data = FileDescription::merge($data, $descriptionData);
+    Helpers::log('description.yml merged');
 } else {
-    echo 'No commits found.', PHP_EOL;
+    $descriptionTemplate = FileDescription::extract($data);
+    $serializer = new YamlSerializer();
+    $yml = $serializer->serialize($descriptionTemplate);
+    file_put_contents($descriptionFile, $yml);
+    Helpers::log('description.yml template generated');
 }
 
-
-
-echo PHP_EOL;
-
-// https://down.52pojie.cn/list.json
-
-echo 'Try get https://down.52pojie.cn/list.json .', PHP_EOL;
-$json = curl('https://down.52pojie.cn/list.json');
-$list = json_decode($json, true);
-
-if ($list) {
-    echo 'Use https://down.52pojie.cn/list.json .', PHP_EOL;
-    file_put_contents(dirname(__DIR__) . '/public/list.json', $json);
-    echo 'Download list.json finished.', PHP_EOL;
-    return;
-} else {
-    echo 'https://down.52pojie.cn/list.json json decode failed.', PHP_EOL;
-}
-
-
-
-echo PHP_EOL;
-
-// https://down.52pojie.cn/list.js
-
-echo 'Try get https://down.52pojie.cn/list.js .', PHP_EOL;
-$jsonp = curl('https://down.52pojie.cn/list.js');
-
-if (1 === preg_match('/\((.*)\);/su', $jsonp, $matches)) {
-    $json = $matches[1];
-    $list = json_decode($json, true);
-
-    if ($list) {
-        echo 'Use https://down.52pojie.cn/list.js .', PHP_EOL;
-        file_put_contents(dirname(__DIR__) . '/public/list.json', $json);
-        echo 'Download list.json finished.', PHP_EOL;
-        return;
-    } else {
-        echo 'https://down.52pojie.cn/list.js json decode failed.', PHP_EOL;
-    }
-} else {
-    echo 'https://down.52pojie.cn/list.js jsonp decode failed.', PHP_EOL;
-}
-
-
-
-echo PHP_EOL;
-
-// Crawl
-
-echo 'Start crawling original site.', PHP_EOL;
-include __DIR__ . '/crawl.php';
-echo 'Crawling finished.', PHP_EOL;
-
-include __DIR__ . '/format.php';
-echo 'list.json generated.', PHP_EOL;
-
-
-function curl($url)
-{
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $content = curl_exec($ch);
-    curl_close($ch);
-    return $content;
-}
+$serializer = new JsonSerializer();
+$json = $serializer->serialize($data);
+file_put_contents(dirname(__DIR__) . '/dist/list.json', $json);

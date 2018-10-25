@@ -9,7 +9,7 @@ npm run build
 
 rm dist/index.html
 cp LICENSE dist/
-cp php/scan.php dist/
+cp php/ dist/ -R
 cp README.md dist/
 zip dist.zip -r dist
 rm -rf dist/

@@ -1,0 +1,79 @@
+name: /
+children:
+  -
+    name: Challenge
+    description: 收录论坛往年比赛题目
+    children:
+      -
+        name: 2012CM
+        description: 2012 年论坛举行 CrackMe 大赛的作品和对应的分析文章，难度有易、中、难，大家任选学习
+      -
+        name: 2016_Security_Challenge
+        description: 2016 年论坛举行安全挑战赛，容纳了更多与实际应用息息相关的 Windows、移动安全相关考题，欢迎大家学习
+  -
+    name: LCG
+    description: 论坛LCG破解组织发布的原创作品，主来来源于 LCG 区：http://www.52pojie.cn/forum-28-1.html
+  -
+    name: LSG
+    description: 论坛LSG安全组织发布的原创作品，主来来源于 LGG 区：http://www.52pojie.cn/forum-58-1.html
+  -
+    name: Logo
+    description: 收集了论坛常用的 ico 图标、不同尺寸的 Logo、还有不同分辨率的吾爱破解论坛专用桌面
+  -
+    name: Tools
+    description: 收集了常用的工具，有很多子目录，下面一一说明用处
+    children:
+      -
+        name: Android_Tools
+        description: 安卓程序逆向所用到的相关工具
+      -
+        name: Anti_Rootkit
+        description: 反病毒木马所用到的相关工具
+      -
+        name: Cryptography
+        description: 算法相关工具
+      -
+        name: Debuggers
+        description: 动态调试工具（比如大家经常用的 OD 就在这里）
+      -
+        name: Disassemblers
+        description: 反编译工具（静态分析为主，如 IDA）
+      -
+        name: Dongle
+        description: 加密狗相关
+      -
+        name: Editors
+        description: 程序资源编辑、文本操作相关工具（如修改程序的标题或者图片，文件对比等）
+      -
+        name: NET
+        description: 微软 .Net 程序逆向相关工具
+      -
+        name: Network_Analyzer
+        description: 网络抓包协议分析相关工具
+      -
+        name: OllyDbg_Plugin
+        description: 动态调试工具 OllyDbg 的插件程序
+      -
+        name: Other
+        description: 其他相关程序
+      -
+        name: PEtools
+        description: PE 文件分析、查壳相关工具（比如 PEiD）
+      -
+        name: Packers
+        description: 给程序加壳相关工具（如 UPX、ASPack、Themida 等）
+      -
+        name: Patchers
+        description: 给程序做补丁相关工具（如 Dup）
+      -
+        name: Unpackers
+        description: 程序脱壳机相关（收集一些常用壳的脱壳机程序）
+  -
+    name: 吾爱破解视频教程
+    description: 收录论坛一些视频教程
+  -
+    name: 吾爱破解论坛精华集
+    description: 收录论坛历年的精华集
+  -
+    name: 吾爱破解论坛网络诊断修复工具.txt
+    description: 访问论坛出现问题的时候可以试试这个工具
