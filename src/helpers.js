@@ -19,7 +19,7 @@ function readableSize(bytes) {
     return Math.round((10 * bytes) / (1024 * 1024 * 1024)) / 10 + ' GB';
 }
 
-export function prepareFiles(file, parent = null) {
+export function prepareFiles(file, downloadBaseUrl = '', parent = null) {
     if (parent) {
         file.parent = parent;
         file.path = _.startsWith(file.name, '/') || _.endsWith(parent.path, '/')
@@ -36,14 +36,14 @@ export function prepareFiles(file, parent = null) {
         file.size = 0;
         file.time = 0;
         file.children.forEach((child) => {
-            prepareFiles(child, file);
+            prepareFiles(child, downloadBaseUrl, file);
             file.size += child.size;
             if (child.time > file.time) {
                 file.time = child.time;
             }
         });
     }
-    file.fullUrl = process.env.VUE_APP_DOWNLOAD_BASE_URL + file.path;
+    file.fullUrl = downloadBaseUrl + file.path;
     if (!file.hasOwnProperty('description')) {
         file.description = '';
     }

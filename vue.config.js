@@ -10,7 +10,7 @@ FancyIndexPlugin.prototype.apply = function (compiler) {
                 const splitted = html.split('/</h1>');
                 const header = splitted[0];
                 const footer = splitted[1];
-                compilation.assets[`${process.env.FANCY_INDEX_DIR}/header.html`] = {
+                compilation.assets[`${process.env.ASSETS_DIR}/header.html`] = {
                     source: function () {
                         return header;
                     },
@@ -18,7 +18,7 @@ FancyIndexPlugin.prototype.apply = function (compiler) {
                         return header.length;
                     }
                 };
-                compilation.assets[`${process.env.FANCY_INDEX_DIR}/footer.html`] = {
+                compilation.assets[`${process.env.ASSETS_DIR}/footer.html`] = {
                     source: function () {
                         return footer;
                     },
@@ -38,8 +38,8 @@ module.exports = {
     css: {
         extract: true
     },
-    baseUrl: process.env.BUILD_GITHUB_PAGES ? '/down_52pojie_cn/' : undefined,
-    assetsDir: process.env.USE_FANCY_INDEX ? process.env.FANCY_INDEX_DIR : undefined,
+    baseUrl: process.env.BASE_URL,
+    assetsDir: process.env.ASSETS_DIR,
     chainWebpack: config => {
         if (process.env.USE_FANCY_INDEX) {
             config.plugin('fancy-index-plugin').use(FancyIndexPlugin);

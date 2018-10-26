@@ -30,7 +30,7 @@
         },
         computed: {
             data() {
-                return prepareFiles(this.list);
+                return prepareFiles(this.list, this.baseUrl);
             }
         }
     };

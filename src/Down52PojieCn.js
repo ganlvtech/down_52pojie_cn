@@ -34,7 +34,7 @@ export default function Down52PojieCn(config = {}) {
     this.routerMode = config.routerMode || 'hash';
 
     /**
-     * 基础网址（末尾不加斜线）
+     * 显示在导航栏上的最前面的网址、文件下载的基础网址（末尾不加斜线）
      *
      * @type string
      * @default 'https://down.52pojie.cn'

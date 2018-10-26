@@ -2,7 +2,7 @@
 pushd $(dirname $0)
 cd ..
 
-export BUILD_GITHUB_PAGES=true
+export BASE_URL=/down_52pojie_cn/
 
 npm install
 npm run build
