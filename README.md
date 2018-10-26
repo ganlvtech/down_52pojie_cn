@@ -51,7 +51,7 @@ server {
 这时执行
 
 ```bash
-sudu service nginx reload
+sudo service nginx reload
 ```
 
 应该可以看到网站的主页已经变成了本项目的样子了，但是现在暂时还没有文件列表。
