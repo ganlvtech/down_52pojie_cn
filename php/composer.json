@@ -3,7 +3,7 @@
     "description": "down.52pojie.cn file scan script",
     "type": "project",
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "ext-json": "*",
         "ext-curl": "*",
         "symfony/yaml": "^4.1"

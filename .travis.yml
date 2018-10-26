@@ -4,10 +4,11 @@ node_js:
 branches:
   only:
   - master
+before_script:
+  - phpenv global 7.1
+  - chmod u+x ./build/*
 script:
-  - chmod 777 ./build/build_release.sh
   - ./build/build_release.sh
-  - chmod 777 ./build/build_github_pages.sh
   - ./build/build_github_pages.sh
 deploy:
   - provider: releases
