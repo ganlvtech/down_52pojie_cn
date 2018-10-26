@@ -14,7 +14,7 @@
 * .gitignore
 * composer.json
 * composer.lock
-* github_pages_crawl.php 用于构建 GitHub Pages
+* crawl.php              自动爬取文件列表，用于构建 GitHub Pages
 * README.md
 * scan.php               用于扫描本地文件
 ```
@@ -95,6 +95,23 @@ return [
     'JSONP_CALLBACK' => '__jsonpCallbackDown52PojieCn',
 ];
 ```
+
+## 爬虫
+
+执行爬虫脚本（有缓存）
+
+```bash
+php php/crawl.php
+```
+
+缓存顺序：
+
+1. https://raw.githubusercontent.com/ganlvtech/down_52pojie_cn/gh-pages/list.json
+2. https://down.52pojie.cn/list.json
+3. https://down.52pojie.cn/list.js
+4. 爬取文件列表
+
+注意：爬虫脚本并没有读取任何配置文件，所有内容都是直接在 crawl.php 中写好的。
 
 ## LICENSE
 
