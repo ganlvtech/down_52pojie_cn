@@ -23,3 +23,4 @@ yarn-error.log*
 /public/list.json
 /php/origin.json
 /dist.zip
+/gh-pages

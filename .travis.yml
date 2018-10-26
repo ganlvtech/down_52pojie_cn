@@ -1,36 +1,25 @@
-matrix:
-  include:
-    - language: node_js
-      node_js:
-        - "node"
-      branches:
-        only:
-        - master
-      script:
-        - chmod 777 ./build_release.sh
-        - ./build_release.sh
-      deploy:
-        provider: releases
-        api-key: $GITHUB_TOKEN
-        file: ./dist.zip
-        skip-cleanup: true
-        on:
-          tags: true
-
-    - language: node_js
-      node_js:
-        - "node"
-      branches:
-        only:
-        - master
-      script:
-        - chmod 777 ./build_github_pages.sh
-        - ./build_github_pages.sh
-      deploy:
-        provider: pages
-        local-dir: dist
-        skip-cleanup: true
-        github-token: $GITHUB_TOKEN
-        keep-history: true
-        on:
-          branch: master
+language: node_js
+node_js:
+  - "10"
+branches:
+  only:
+  - master
+script:
+  - chmod 777 ./build/build_release.sh
+  - ./build/build_release.sh
+  - chmod 777 ./build/build_github_pages.sh
+  - ./build/build_github_pages.sh
+deploy:
+  - provider: releases
+    api-key: $GITHUB_TOKEN
+    file: ./dist.zip
+    skip-cleanup: true
+    on:
+      tags: true
+  - provider: pages
+    local-dir: gh-pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    on:
+      branch: master
