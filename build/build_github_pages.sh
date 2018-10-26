@@ -14,6 +14,6 @@ composer install
 php crawl.php
 popd
 
-mv dist/ gh-pages/
+mv dist gh-pages
 
 popd
