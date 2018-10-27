@@ -54,7 +54,7 @@ server {
     listen       443 ssl;
     root         /srv/www/down;
     index        index.html index.htm;
-    server_name  down.localhost;
+    server_name  down.test;
 
     location / {
         fancyindex         on;
@@ -76,4 +76,68 @@ sudo service nginx reload
 
 ## 使用 history 模式
 
+## 网站的目录结构
+
+```plain
+/
+    foo.zip
+    bar.exe
+    ......
+    index.html
+    .fancyindex/
+        js/
+        css/
+```
+
+### Nginx 配置
+
+```nginx
+server {
+    listen       80;
+    listen       443 ssl;
+    root         /srv/www/down;
+    index        /index.html;
+    server_name  down.test;
+}
+```
+
+### 插件配置
+
+```javascript
+window.down52PojieCn = new Down52PojieCn({
+    routerMode: 'history'
+});
+```
+
 ## 使用 hash 模式
+
+### 网站的目录结构
+
+```plain
+/
+    foo.zip
+    bar.exe
+    ......
+    index.html
+    .fancyindex/
+        js/
+        css/
+```
+
+### Nginx 配置
+
+```nginx
+server {
+    listen       80;
+    listen       443 ssl;
+    root         /srv/www/down;
+    index        index.html;
+    server_name  down.test;
+}
+```
+
+### 插件配置
+
+```javascript
+window.down52PojieCn = new Down52PojieCn({});
+```

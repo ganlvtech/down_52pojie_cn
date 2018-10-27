@@ -15,7 +15,7 @@
 
 ```js
 window.down52PojieCn = new Down52PojieCn({
-    vueElement: '#app';
+    vueElement: '#app',
     routerMode: 'hash',
     baseUrl: 'https://down.52pojie.cn',
     requestType: 'json',
@@ -36,7 +36,7 @@ window.down52PojieCn = new Down52PojieCn({
 
 ```js
 window.down52PojieCn = new Down52PojieCn({
-    vueElement: '#app';
+    vueElement: '#app',
     routerMode: 'hash',
     baseUrl: 'https://down.52pojie.cn',
     requestType: 'jsonp',
