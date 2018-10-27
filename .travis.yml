@@ -1,9 +1,11 @@
 language: node_js
 node_js:
   - "10"
+cache: npm
 branches:
   only:
   - master
+  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 before_script:
   - phpenv global 7.1
   - chmod u+x ./build/*
