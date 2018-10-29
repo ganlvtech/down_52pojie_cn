@@ -3,8 +3,8 @@
         <table class="table table-sm table-hover sortable table-bordered">
             <thead class="thead-light">
                 <tr>
-                    <th class="text-left" @click="sort('isDir')"/>
-                    <th class="text-left" @click="sort('name')">文件名</th>
+                    <th class="text-left icon" @click="sort('isDir')"/>
+                    <th class="text-left name" @click="sort('name')">文件名</th>
                     <th class="text-right size" @click="sort('size')">文件大小</th>
                     <th class="text-left date" data-sort-default @click="sort('time')">上传日期</th>
                 </tr>
@@ -19,18 +19,18 @@
                             <path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"/>
                         </svg>
                     </td>
-                    <td>
+                    <td class="text-left name">
                         <router-link v-if="file.isDir" :to="file.path" :title="file.description" data-tooltip="toggle">{{ file.name }}</router-link>
                         <a v-else :href="file.fullUrl" :title="file.description" target="_blank" data-tooltip="toggle">{{ file.name }}</a>
                     </td>
-                    <td :title="file.size" class="text-right">{{ file.sizeReadable }}</td>
-                    <td :title="file.timeForHuman">{{ file.timeFromNowForHuman }}</td>
+                    <td :title="file.size" class="text-right size">{{ file.sizeReadable }}</td>
+                    <td :title="file.timeForHuman" class="text-left date">{{ file.timeFromNowForHuman }}</td>
                 </tr>
                 <tr v-if="empty">
                     <td class="icon"></td>
-                    <td>没有文件</td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td class="name">没有文件</td>
+                    <td class="size">-</td>
+                    <td class="time">-</td>
                 </tr>
             </tbody>
         </table>
@@ -105,7 +105,7 @@
 
 <style scoped lang="scss">
     .icon {
-        width: 14px;
+        width: 0.8rem;
         color: rgba(3, 47, 98, 0.55);
         box-sizing: content-box;
 
@@ -114,13 +114,19 @@
         }
     }
 
+    .name {
+        min-width: 10em;
+    }
+
     .size {
         width: 5em;
-        min-width: 5em;
     }
 
     .date {
-        width: 6em;
-        min-width: 6em;
+        width: 5em;
+    }
+
+    .size, .date {
+        white-space: nowrap;
     }
 </style>
