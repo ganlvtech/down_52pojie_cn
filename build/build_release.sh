@@ -11,6 +11,10 @@ npm run build
 sed -i "s/new Down52PojieCn({/& routerMode: 'history', requestType: 'jsonp' /g" dist/index.html
 sed -i "s/new Down52PojieCn({/& routerMode: 'history', requestType: 'jsonp' /g" dist/.fancyindex/footer.html
 
+pushd php/
+composer install
+popd
+
 cp docs dist/ -R
 cp php dist/ -R
 rm dist/php/crawl.php
