@@ -10,6 +10,7 @@ window.Down52PojieCn = Down52PojieCn;
   const moment = require('moment');
   let date = moment().format("MMDD")
   if (date === '1030' || date === '1031' || date === '1101') {
-    require('./easter-eggs/halloween');
+    const halloween = require('./easter-eggs/halloween');
+    halloween.init();
   }
 })();
