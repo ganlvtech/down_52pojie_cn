@@ -3,10 +3,10 @@ import toastr from 'toastr';
 const STYLESHEET = {
   0: `
   body, body * {
-    transition: color 1s, background-color 1s, border-color 1s;
-    -moz-transition: color 1s, background-color 1s, border-color 1s;
-    -webkit-transition: color 1s, background-color 1s, border-color 1s;
-    -o-transition: color 1s, background-color 1s, border-color 1s;
+    transition: color 2s, background-color 2s, border-color 2s;
+    -moz-transition: color 2s, background-color 2s, border-color 2s;
+    -webkit-transition: color 2s, background-color 2s, border-color 2s;
+    -o-transition: color 2s, background-color 2s, border-color 2s;
   }`,
 
   1000: `
@@ -16,7 +16,7 @@ const STYLESHEET = {
 
   2000: `
   body * {
-    background-color: rgba(0, 0, 0, 0.2) !important;
+    background-color: transparent !important;
     color: #fff !important;
     border-color: #fff !important;
   }`
@@ -33,19 +33,34 @@ function addStyle(css) {
   }
 
   document.getElementsByTagName('head')[0].appendChild(style);
+
+  return style;
 }
 
 export function init() {
   setTimeout(function() {
     addStyle(STYLESHEET[0]);
+
     setTimeout(function() {
-      addStyle(STYLESHEET[1000]);
+      let style = addStyle(STYLESHEET[1000]);
+
+      let loop = function() {
+        style.remove();
+
+        setTimeout(function() {
+          style = addStyle(STYLESHEET[1000]);
+
+          setTimeout(loop, 10000);
+        }, 2000);
+      };
+      setTimeout(loop, 10000);
+
       setTimeout(function() {
         addStyle(STYLESHEET[2000]);
         setTimeout(function() {
           toastr.info('Happy Halloween!');
-        }, 3000);
+        }, 1000);
       }, 2000);
-    }, 1000);
+    }, 2000);
   }, 0);
 }
