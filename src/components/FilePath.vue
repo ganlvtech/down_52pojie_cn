@@ -86,7 +86,9 @@
                 this.$nextTick(() => {
                     $('.tooltip').remove();
                     $(this.$el).find('[data-tooltip="toggle"]').tooltip({
-                        placement: 'bottom'
+                        placement: 'bottom',
+                        container: 'body',
+                        boundary: 'window'
                     });
                 });
             }
