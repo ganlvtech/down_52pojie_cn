@@ -1,3 +1,8 @@
+/*!
+ * down.52pojie.cn (https://github.com/ganlvtech/down_52pojie_cn)
+ * Copyright (c) 2018 Ganlv (https://github.com/ganlvtech)
+ * Licensed under MIT (https://github.com/ganlvtech/down_52pojie_cn/blob/master/LICENSE)
+ */
 import axios from 'axios';
 import jQuery from 'jquery';
 import toastr from 'toastr';
