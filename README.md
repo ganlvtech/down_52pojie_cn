@@ -26,6 +26,8 @@
   * 支持正则表达式搜索
 * 可以为文件或文件夹添加描述
 
+**注意：**如果你的服务器文件过多，不适合一次性列举出全部文件，那么最好不要使用本应用。
+
 ## 部署
 
 请参考 [部署说明](docs/deploy.md)
@@ -41,6 +43,9 @@
 ## 其他链接
 
 * [之前未使用 Vue.js 版本](https://github.com/ganlvtech/down_52pojie_cn/tree/1.0)
+* 类似项目：
+    * [GitHub Topic: file-explorer](https://github.com/topics/file-explorer)
+    * [lrsjng/h5ai](https://github.com/lrsjng/h5ai): HTTP web server index for Apache httpd, lighttpd, nginx and Cherokee. <https://larsjung.de/h5ai/>
 
 ## LICENSE
 
