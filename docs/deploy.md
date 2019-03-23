@@ -10,7 +10,7 @@
 
 其余两种都不需要 ngx-fancyindex，这两种的区别在于使用了 Vue Router 的两种模式，`history` 或者 `hash`。
 
-第 2 种：使用 history 模式，URL 是 `https://down.52pojie.cn/Tools/Debuggers/`，这种需要对 Nginx 进行一些配置。
+第 2 种：使用 history 模式，URL 是 `https://down.52pojie.cn/Tools/Debuggers/`，这种需要对 Nginx 或 Apache 进行一些配置。
 
 第 3 种：使用 hash 模式，URL 是 `https://down.52pojie.cn/#/Tools/Debuggers/`，这种直接上传到服务器上即可，无需过多配置。
 
@@ -99,6 +99,34 @@ server {
     index        /index.html;
     server_name  down.test;
 }
+```
+
+### Apache 配置
+
+打开 Rewrite 模块
+
+```bash
+sudo a2enmod rewrite
+```
+
+新建 `/etc/apache2/sites-enabled/down.test.conf`
+
+```apache
+<VirtualHost *:80>
+    ServerName down.test
+    DocumentRoot /srv/www/down
+
+    <Directory "/srv/www/down">
+        Options FollowSymlinks
+        AllowOverride None
+        Require all granted
+
+        RewriteEngine On
+        RewriteBase /
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ /index.html [L]
+    </Directory>
+</VirtualHost>
 ```
 
 ### 插件配置
