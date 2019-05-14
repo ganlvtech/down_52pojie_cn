@@ -84,6 +84,10 @@ $navbar-dark-color: #fff;
   }
 }
 
+.alert {
+  margin-top: 1rem;
+}
+
 .alert ul {
   margin-bottom: 0;
   padding-left: 1em;
@@ -92,6 +96,10 @@ $navbar-dark-color: #fff;
 .current-path {
   font-size: 1.2rem;
   margin-bottom: 1rem;
+}
+
+#app {
+  margin-top: 1rem;
 }
 
 #main {

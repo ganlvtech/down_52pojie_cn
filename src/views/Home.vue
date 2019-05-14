@@ -1,7 +1,5 @@
 <template>
-    <div class="container">
-        <FileExplorer :base-url="baseUrl" :root="data"/>
-    </div>
+    <FileExplorer :base-url="baseUrl" :root="data" />
 </template>
 
 <script>
