@@ -132,7 +132,7 @@ Down52PojieCn.prototype.callback = function (data) {
         base: '/',
         routes: [
             {
-                path: '(.*)',
+                path: '*',
                 name: 'home',
                 component: Home,
                 props: {

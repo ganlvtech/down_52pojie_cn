@@ -45,7 +45,7 @@
         },
         computed: {
             path() {
-                return this.$route.params[0];
+                return this.$route.path;
             },
             stats() {
                 let lastUpdate = this.root.timeFromNowForHuman;
@@ -116,7 +116,7 @@
         },
         methods: {
             submit(query) {
-                this.$router.push({name: 'home', query: {query: query}, params: {0: ''}});
+                this.$router.push({name: 'home', query: {query: query}});
             },
         }
     };
