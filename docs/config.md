@@ -3,7 +3,7 @@
 本项目已经插件化，在 HTML 中插入下列代码，即可以使用如下代码，使用默认配置加载插件。
 
 ```html
-<div id="app">
+<div id="app"></div>
 <script>
     window.down52PojieCn = new Down52PojieCn();
 </script>
