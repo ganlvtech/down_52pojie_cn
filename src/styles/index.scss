@@ -48,12 +48,6 @@ $navbar-dark-color: #fff;
         margin-top: -3px;
       }
 
-      .newdun-logo {
-        height: 1rem;
-        vertical-align: middle;
-        margin-top: -3px;
-      }
-
       &:hover {
         box-shadow: 0 1px $navbar-dark-color;
       }
@@ -80,12 +74,6 @@ $navbar-dark-color: #fff;
 
   p {
     margin-bottom: 0;
-
-    .newdun-logo {
-      margin: -4px .5em 0;
-      height: 1em;
-      vertical-align: middle;
-    }
   }
 
   @media (max-width: 991.98px) {
