@@ -1,66 +1,57 @@
 import toastr from 'toastr';
 
 const STYLESHEET = {
-  0: `
+  transition: `
   body, body * {
     transition: color 2s, background-color 2s, border-color 2s;
     -moz-transition: color 2s, background-color 2s, border-color 2s;
     -webkit-transition: color 2s, background-color 2s, border-color 2s;
     -o-transition: color 2s, background-color 2s, border-color 2s;
-  }`,
-
-  1000: `
+  }
+  `,
+  bodyBlack: `
   body {
     background-color: #000;
   }`,
-
-  2000: `
+  allBlack: `
   body * {
     background-color: transparent !important;
     color: #fff !important;
     border-color: #fff !important;
+  }
+  .breadcrumb {
+    box-shadow: inset 0 0 0px 1px;
   }`
-}
+};
 
 function addStyle(css) {
   let style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (style.styleSheet) { // IE
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-
+  style.appendChild(document.createTextNode(css));
   document.getElementsByTagName('head')[0].appendChild(style);
-
   return style;
 }
 
+function enableTransition() {
+  addStyle(STYLESHEET.transition);
+}
+
+let bodyBlackStyleElement;
+
+function setBodyBlack() {
+  bodyBlackStyleElement = addStyle(STYLESHEET.bodyBlack);
+}
+
+function setAllBlack() {
+  addStyle(STYLESHEET.allBlack);
+}
+
+function toast() {
+  toastr.info('Happy Halloween!');
+}
+
 export function init() {
-  setTimeout(function() {
-    addStyle(STYLESHEET[0]);
-
-    setTimeout(function() {
-      let style = addStyle(STYLESHEET[1000]);
-
-      let loop = function() {
-        style.remove();
-
-        setTimeout(function() {
-          style = addStyle(STYLESHEET[1000]);
-
-          setTimeout(loop, 10000);
-        }, 2000);
-      };
-      setTimeout(loop, 10000);
-
-      setTimeout(function() {
-        addStyle(STYLESHEET[2000]);
-        setTimeout(function() {
-          toastr.info('Happy Halloween!');
-        }, 1000);
-      }, 2000);
-    }, 2000);
-  }, 0);
+  enableTransition();
+  setTimeout(setBodyBlack, 2000);
+  setTimeout(setAllBlack, 4000);
+  setTimeout(toast, 5000);
 }

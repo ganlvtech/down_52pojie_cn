@@ -11,10 +11,10 @@ require('bootstrap');
 
 window.Down52PojieCn = Down52PojieCn;
 
-(function() {
+(function () {
   const moment = require('moment');
-  let date = moment().format("MMDD")
-  if (date === '1030' || date === '1031' || date === '1101') {
+  let date = moment().format('MMDD');
+  if (date === '0401' || date === '1030' || date === '1031' || date === '1101') {
     const halloween = require('./easter-eggs/halloween');
     halloween.init();
   }
